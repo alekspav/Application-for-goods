@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->tinyInteger('status');
             $table->string('client_email');
             $table->integer('partner_id')->unsigned();
-            $table->timestamp('delivery_dt');
+            $table->timestamp('delivery_dt')->nullable();
             $table->timestamps();
             $table->foreign('partner_id')->references('id')->on('partners');
         });
