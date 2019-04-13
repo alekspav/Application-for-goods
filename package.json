@@ -12,11 +12,13 @@
         "laravel-elixir-vue-2": "^0.2.0",
         "laravel-elixir-webpack-official": "^1.0.2",
         "lodash": "^4.17.10",
-        "vue": "^2.5.17",
+        "vue": "^2.6.10",
         "vue-resource": "^1.5.1"
     },
     "dependencies": {
         "axios": "^0.16.2",
+        "bootstrap": "^4.3.1",
+        "bootstrap-vue": "^2.0.0-rc.18",
         "chalk": "^2.4.1",
         "vue-jsonp": "^0.1.8",
         "vue-localstorage": "^0.3.0",

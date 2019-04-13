@@ -14,64 +14,62 @@
     <!-- Scripts -->
     <link rel="preload" href="{{ url('/js/app.js') }}" as="script">
     <script>
-        window.Laravel ='<?= json_encode([
+        window.Laravel = '<?= json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>'
     </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+<div id="app">
+    <nav class="navbar">
+        <div class="container">
 
-                </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <ul class="nav navbar-nav">
+                    <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/"><i class="fa fa-home"
+                                                                                      aria-hidden="true"></i> Главная
+                            <span class="sr-only">(current)</span></a></li>
+                    <li class="{{ Request::is('temperature') ? 'active' : '' }}"><a href="{{ url('temperature') }}"><i
+                                    class="fa fa-cloud" aria-hidden="true"></i> Погода</a></li>
+                    <li class="{{ Request::is('order') ? 'active' : '' }}"><a href="{{ url('order') }}"><i
+                                    class="fa fa-first-order" aria-hidden="true"></i> Заказы</a></li>
+                    <li class="{{ Request::is('product') ? 'active' : '' }}"><a href="{{ url('product') }}"><i
+                                    class="fa fa-product-hunt" aria-hidden="true"></i> Продукты</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a href="{{ url('register') }}"><i class="fa fa-registered" aria-hidden="true"></i>
+                                Регистрация</a></li>
+                        <li><a href="{{ url('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Вход</a></li>
+                    @else
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                    <ul class="nav navbar-nav">
-                        <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Главная <span class="sr-only">(current)</span></a></li>
-                        <li class="{{ Request::is('phones') ? 'active' : '' }}"><a href="{{ url('phones') }}"><i class="fa fa-address-book" aria-hidden="true"></i> Погода</a></li>
-                        <li class="{{ Request::is('fileshare') ? 'active' : '' }}"><a href="{{ url('fileshare') }}"><i class="fa fa-cloud" aria-hidden="true"></i> Заказы</a></li>
-                        <li class="{{ Request::is('phones') ? 'active' : '' }}"><a href="{{ url('phones') }}"><i class="fa fa-address-book" aria-hidden="true"></i> Продукты</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('register') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Регистрация</a></li>
-                            <li><a href="{{ url('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Вход</a></li>
-                        @else
-
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('logout') }}" class="white-text"
-                                           onclick="event.preventDefault();
+                        <li>
+                            <a href="#" role="button"><i class="fa fa-user-circle-o"
+                                                         aria-hidden="true"></i> {{ Auth::user()->name }} </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('logout') }}" class="white-text"
+                               onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out" aria-hidden="true"></i> Выход
-                                        </a>
+                                <i class="fa fa-sign-out" aria-hidden="true"></i> Выход
+                            </a>
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+
+                        </li>
+                    @endif
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    <main class="py-4">
+        @yield('content')
+    </main>
+</div>
 </body>
 </html>
