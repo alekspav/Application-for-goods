@@ -38,7 +38,7 @@
         },
         methods: {
             getWeather() {
-               let url = "api/weather?region=191";
+               let url = "api/weather/191";
 
                 axios({'url': url})
                     .then(response => {

@@ -16,6 +16,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 Vue.component('temperature', require('./components/temperature/ShowTemperature.vue'));
 
 const app = new Vue({

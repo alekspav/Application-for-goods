@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Корпоративный портал</title>
     <link rel="stylesheet" href="{{ url('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('/lib/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -13,14 +13,9 @@
 
     <!-- Scripts -->
     <link rel="preload" href="{{ url('/js/app.js') }}" as="script">
-    <script>
-        window.Laravel = '<?= json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>'
-    </script>
 </head>
 <body>
-<div id="app">
+<div>
     <nav class="navbar">
         <div class="container">
 
@@ -67,9 +62,10 @@
         </div>
     </nav>
 
-    <main class="py-4">
+    <main id="app">
         @yield('content')
     </main>
 </div>
+<script src="{{ url('/js/app.js') }}"></script>
 </body>
 </html>

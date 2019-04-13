@@ -15,4 +15,4 @@ use Illuminate\Http\Request;
 
 
 
-Route::get('weather/{id}', 'WeatherController@get_weather')->where('id', '[0-9]+');
+Route::get('weather/{id}', 'Api\WeatherController@get_weather')->where('id', '[0-9]+');

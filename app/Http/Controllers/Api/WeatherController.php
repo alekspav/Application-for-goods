@@ -12,12 +12,16 @@ class WeatherController extends Controller
      *
      * @param $id Идентификатор города
      *
-     * @return string JSON Результат
+     * @return string XML Результат
      */
-    public function show($id){
-        $url = "https://export.yandex.ru/bar/reginfo.xml?region=".$id;
-        $jsonData = json_decode(file_get_contents($url));
-        return $jsonData;
+    public function get_weather($id)
+    {
+        //Получаем XML c API
+        $url = "https://export.yandex.ru/bar/reginfo.xml?region=" . $id;
+        header('Content-type: application/xml');
+        $xmlData = file_get_contents($url);
+
+        return $xmlData;
     }
 
 }
