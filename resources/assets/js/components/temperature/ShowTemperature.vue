@@ -26,6 +26,10 @@
 </template>
 
 <script>
+    import VueJsonp from 'vue-jsonp';
+    Vue.use(VueJsonp)
+    Vue.use(VueJsonp, 5000)
+
     export default {
         data: function() {
             return  {
@@ -34,16 +38,18 @@
         },
         methods: {
             getWeather() {
-                let url = "https://export.yandex.ru/bar/reginfo.xml?region=191";
-                let jsonpAdapter = require('axios-jsonp');
+               let url = "api/weather?region=191";
 
-                axios({'url': url, adapter: jsonpAdapter})
+                axios({'url': url})
                     .then(response => {
                         this.getTemp = response.data;
+                        console.log(response);
                     })
+
                     .catch(error => {
                         console.log(error);
                     });
+
             },
         },
         beforeMount() {

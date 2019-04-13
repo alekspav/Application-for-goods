@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+
+Route::get('weather/{id}', 'WeatherController@get_weather')->where('id', '[0-9]+');
