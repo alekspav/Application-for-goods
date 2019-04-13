@@ -3,10 +3,21 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Example Component</div>
+                    <div class="panel-heading">Температура в Брянске</div>
 
                     <div class="panel-body">
-                        I'm an example component!
+                        <div id="weather">
+                            {{getTemp}}
+                        </div>
+                        <div id="weather-for-check">
+                            <p>Для проверки</p>
+                            <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.ru/pogoda/191"
+                               target="_blank"><img src="https://info.weather.yandex.net/191/1_white.ru.png?domain=ru"
+                                                    border="0" alt="Яндекс.Погода"/><img width="1" height="1"
+                                                                                         src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif"
+                                                                                         alt="" border="0"/></a>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -16,8 +27,28 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        data: function() {
+            return  {
+                getTemp: ''
+            }
+        },
+        methods: {
+            getWeather() {
+                let url = "https://export.yandex.ru/bar/reginfo.xml?region=191";
+                let jsonpAdapter = require('axios-jsonp');
+
+                axios({'url': url, adapter: jsonpAdapter})
+                    .then(response => {
+                        this.getTemp = response.data;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+        },
+        beforeMount() {
+            this.getWeather();
+        },
+
     }
 </script>
