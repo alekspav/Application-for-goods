@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default weather-panel">
-                    <div class="panel-heading"><h2>Температура в Брянске</h2></div>
+                    <div class="panel-heading"><span>Температура в Брянске</span><span class="pull-right">Яндекс.Погода</span></div>
 
                     <div class="panel-body">
 
@@ -17,6 +17,7 @@
                                 <span id="temp-v"> Вечером [{{minVTemp}}° .. {{maxVTemp}}°]</span><br>
                                 <span id="temp-n"> Ночью [{{minNTemp}}° .. {{maxNTemp}}°]</span><br>
                                 <span id="temp-nu"> После полуночи [{{minNUTemp}}° .. {{maxNUTemp}}°]</span>
+
                             </div>
                         </div>
                     </div>
@@ -141,6 +142,10 @@
 
     .panel-heading {
         background: red;
+    }
+
+    .panel-heading span:first-child {
+        font-size: 24px;
     }
 
     .panel-body {
