@@ -22,6 +22,7 @@
         "chalk": "^2.4.1",
         "vue-jsonp": "^0.1.8",
         "vue-localstorage": "^0.3.0",
-        "vue-template-compiler": "^2.5.17"
+        "vue-template-compiler": "^2.5.17",
+        "xml2js": "^0.4.19"
     }
 }

@@ -3,20 +3,21 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Температура в Брянске</div>
+                    <div class="panel-heading"><h2>Температура в Брянске</h2></div>
 
                     <div class="panel-body">
-                        <div id="weather">
-                            {{getTemp}}
-                        </div>
-                        <div id="weather-for-check">
-                            <p>Для проверки</p>
-                            <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.ru/pogoda/191"
-                               target="_blank"><img src="https://info.weather.yandex.net/191/1_white.ru.png?domain=ru"
-                                                    border="0" alt="Яндекс.Погода"/><img width="1" height="1"
-                                                                                         src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif"
-                                                                                         alt="" border="0"/></a>
 
+                        <div id="weather">
+                            <span class="temperature">Сейчас {{currentTemp}}° </span>
+
+
+                            <div class="weather-daytime">
+                                <span id="temp-u"> Утром [{{minUTemp}}° .. {{maxUTemp}}°]</span><br>
+                                <span id="temp-d"> Днем [{{minDTemp}}° .. {{maxDTemp}}°]</span><br>
+                                <span id="temp-v"> Вечером [{{minVTemp}}° .. {{maxVTemp}}°]</span><br>
+                                <span id="temp-n"> Ночью [{{minNTemp}}° .. {{maxNTemp}}°]</span><br>
+                                <span id="temp-nu"> После полуночи [{{minNUTemp}}° .. {{maxNUTemp}}°]</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -26,24 +27,100 @@
 </template>
 
 <script>
-    import VueJsonp from 'vue-jsonp';
-    Vue.use(VueJsonp)
-    Vue.use(VueJsonp, 5000)
-
     export default {
-        data: function() {
-            return  {
-                getTemp: ''
+        data: function () {
+            return {
+                //В наст время
+                currentTemp: '',
+
+                //утром
+                minUTemp: '',
+                maxUTemp: '',
+
+                //Днем
+                minDTemp: '',
+                maxDTemp: '',
+
+                //Вечером
+                minVTemp: '',
+                maxVTemp: '',
+
+                //Ночью
+                minNTemp: '',
+                maxNTemp: '',
+
+                //Ночью утром
+                minNUTemp: '',
+                maxNUtemp: ''
             }
         },
         methods: {
+            /**
+             * Парсить XML
+             *
+             * @this  {VueComponent}
+             * @param {string} xml - XML-строка.
+             */
+            doParseXML(xml) {
+                var parseString = require('xml2js').parseString;
+                self = this;
+                parseString(xml, function (err, parsed_object) {
+                    //Время дня
+                    let daytime = parsed_object.info.weather[0].day[0].daytime[0];//Возможные значения  - u,d,v,n
+                    let day_times = ['u', 'd', 'v', 'n'];
+                    let time_index = day_times.indexOf(daytime);
+                    time_index = time_index == -1 ? 4 : time_index;//Поправка утром ночью
+
+                    //Время дня
+                    let day_part = parsed_object.info.weather[0].day[0].day_part[time_index];
+
+                    //Объект температуры в настоящее время
+                    let temp_obj;
+
+                    //В настоящее время
+                    if (daytime == "u") {
+                        temp_obj = day_part.temperature;
+                        self.currentTemp = temp_obj[0]['_'];
+
+                    }
+                    else {
+                        self.currentTemp = day_part.temperature_to[0]['_'];
+                    }
+
+                    //утром
+                    self.minUTemp = parsed_object.info.weather[0].day[0].day_part[4].temperature_to[0]['_'];
+                    self.maxUTemp = parsed_object.info.weather[0].day[0].day_part[0].temperature[0]['_'];
+
+                    //Днем
+                    self.minDTemp = parsed_object.info.weather[0].day[0].day_part[1].temperature_from[0]['_'];
+                    self.maxDTemp = parsed_object.info.weather[0].day[0].day_part[1].temperature_to[0]['_'];
+
+                    //Вечером
+                    self.minVTemp = parsed_object.info.weather[0].day[0].day_part[2].temperature_from[0]['_'];
+                    self.maxVTemp = parsed_object.info.weather[0].day[0].day_part[2].temperature_to[0]['_'];
+
+                    //Ночью
+                    self.minNTemp = parsed_object.info.weather[0].day[0].day_part[3].temperature_from[0]['_'];
+                    self.maxNTemp = parsed_object.info.weather[0].day[0].day_part[3].temperature_to[0]['_'];
+
+                    //Ночью утром
+                    self.minNUTemp = parsed_object.info.weather[0].day[0].day_part[4].temperature_from[0]['_'];
+                    self.maxNUTemp = parsed_object.info.weather[0].day[0].day_part[4].temperature_to[0]['_'];
+
+                });
+            },
+
+            /**
+             * Получить погоду
+             *
+             * @this  {VueComponent}
+             */
             getWeather() {
-               let url = "api/weather/191";
+                let url = "api/weather/191";
 
                 axios({'url': url})
                     .then(response => {
-                        this.getTemp = response.data;
-                        console.log(response);
+                        this.doParseXML(response.data);
                     })
 
                     .catch(error => {
@@ -52,9 +129,33 @@
 
             },
         },
-        beforeMount() {
+        created() {
             this.getWeather();
         },
 
     }
 </script>
+<style scoped>
+    .panel-heading{
+        background: cyan;
+    }
+
+    .panel-body{
+        background: yellow;
+    }
+
+    #weather {
+        padding: 15px;
+        vertical-align: middle;
+    }
+
+    .temperature {
+        font-family: 'Vast Shadow', cursive;
+        font-size: 40px;
+    }
+
+    .weather-daytime {
+        font-family: 'Vast Shadow', cursive;
+    }
+
+</style>
