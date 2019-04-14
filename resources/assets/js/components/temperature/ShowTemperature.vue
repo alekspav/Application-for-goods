@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+                <div class="panel panel-default weather-panel">
                     <div class="panel-heading"><h2>Температура в Брянске</h2></div>
 
                     <div class="panel-body">
@@ -131,31 +131,31 @@
         },
         created() {
             this.getWeather();
-        },
-
+        }
     }
 </script>
 <style scoped>
-    .panel-heading{
-        background: cyan;
+    .weather-panel {
+        font-family: 'Vast Shadow', cursive;
     }
 
-    .panel-body{
-        background: yellow;
+    .panel-heading {
+        background: red;
+    }
+
+    .panel-body {
+        background: greenyellow;
     }
 
     #weather {
         padding: 15px;
         vertical-align: middle;
+
     }
 
     .temperature {
-        font-family: 'Vast Shadow', cursive;
         font-size: 40px;
     }
 
-    .weather-daytime {
-        font-family: 'Vast Shadow', cursive;
-    }
 
 </style>
