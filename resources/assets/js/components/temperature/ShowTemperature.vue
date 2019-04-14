@@ -135,32 +135,3 @@
         }
     }
 </script>
-<style scoped>
-    .weather-panel {
-        font-family: 'Vast Shadow', cursive;
-    }
-
-    .panel-heading {
-        background: red;
-    }
-
-    .panel-heading span:first-child {
-        font-size: 24px;
-    }
-
-    .panel-body {
-        background: greenyellow;
-    }
-
-    #weather {
-        padding: 15px;
-        vertical-align: middle;
-
-    }
-
-    .temperature {
-        font-size: 40px;
-    }
-
-
-</style>
