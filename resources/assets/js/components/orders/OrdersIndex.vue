@@ -24,12 +24,12 @@
                         <td>{{ order.partner_id }}</td>
                         <td>{{ order.delivery_dt }}</td>
                         <td>
-                            <router-link :to="{name: 'editOrder', params: {id: company.id}}" class="btn btn-xs btn-default">
+                            <router-link :to="{name: 'editOrder', params: {id: order.id}}" class="btn btn-xs btn-default">
                                 Редактировать
                             </router-link>
                             <a href="#"
                                class="btn btn-xs btn-danger"
-                               v-on:click="deleteEntry(company.id, index)">
+                               v-on:click="deleteEntry(order.id, index)">
                                 Удалить
                             </a>
                         </td>
@@ -74,4 +74,5 @@
             }
         }
     }
+
 </script>
