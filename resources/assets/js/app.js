@@ -21,10 +21,12 @@ import VueRouter from 'vue-router';
 
 window.Vue.use(VueRouter);
 
+import ShowTemperature from './components/temperature/ShowTemperature.vue';
 import OrdersIndex from './components/orders/OrdersIndex.vue';
 import OrdersCreate from './components/orders/OrdersCreate.vue';
 import OrdersEdit from './components/orders/OrdersEdit.vue';
-import ShowTemperature from './components/temperature/ShowTemperature.vue';
+
+
 
 const routes = [
     {
@@ -37,6 +39,7 @@ const routes = [
     {path: '/orders/edit/:id', component: OrdersEdit, name: 'editOrder'},
     {path: '/temperature', component: ShowTemperature, name: 'createOrder'},
 ]
+
 
 const router = new VueRouter({ routes })
 
