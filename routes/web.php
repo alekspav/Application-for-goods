@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@index');
 Auth::routes();
 
-Route::get('temperature', 'ShowTemperature');
+//Route::get('temperature', 'ShowTemperature');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
