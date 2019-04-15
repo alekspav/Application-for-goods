@@ -40,7 +40,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <button class="btn btn-success">Создать</button>
+                            <button class="btn btn-success">Обновить</button>
                         </div>
                     </div>
                 </form>
@@ -56,6 +56,8 @@
             let app = this;
             let id = app.$route.params.id;
             app.orderId = id;
+
+            //Получает заказ с иденьтификатором
             axios.get('/api/orders/' + id)
                 .then(function (resp) {
                     app.order = resp.data;
@@ -64,12 +66,13 @@
                     alert("Нельзя загрузить заказ")
                 });
 
+            //Получает партнеров
             axios.get('/api/partners')
                 .then(function (resp) {
                     app.partners = resp.data;
                 })
                 .catch(function () {
-                    alert("Нельзя загрузить заказ")
+                    alert("Нельзя загрузить партнеров")
                 });
         },
         data: function () {

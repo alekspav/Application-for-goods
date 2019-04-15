@@ -11,7 +11,11 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Статус</label>
-                            <input type="text" v-model="order.status" class="form-control">
+                            <select class="form-control" v-model="order.status">
+                                <option value="0">Новый</option>
+                                <option value="10">Подтвержден</option>
+                                <option value="20">Завершен</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -23,13 +27,15 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Партнер</label>
-                            <input type="text" v-model="order.partner_id" class="form-control">
+                            <select v-model="order.partner_id" class="form-control">
+                                <option v-for="partner in partners" v-bind:value="partner.id">{{partner.name}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Доставлено</label>
-                            <input type="text" v-model="order.delivery_dt" class="form-control">
+                            <datetime format="YYYY-MM-DD h:i:s" width="300px" v-model="order.delivery_dt"></datetime>
                         </div>
                     </div>
                     <div class="row">
@@ -54,8 +60,20 @@
                     client_email: '',
                     partner_id: '',
                     delivery_dt: '',
-                }
+                },
+                partners: '' //Список партнеров
             }
+        },
+        mounted() {
+            let app = this;
+            //Получает партнеров
+            axios.get('/api/partners')
+                .then(function (resp) {
+                    app.partners = resp.data;
+                })
+                .catch(function () {
+                    alert("Нельзя загрузить партнеров")
+                });
         },
         methods: {
             saveForm() {
