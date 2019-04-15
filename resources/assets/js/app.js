@@ -17,8 +17,28 @@ window.Vue = require('vue');
  */
 
 
-Vue.component('temperature', require('./components/temperature/ShowTemperature.vue'));
+import VueRouter from 'vue-router';
 
-const app = new Vue({
-    el: '#app'
-});
+window.Vue.use(VueRouter);
+
+import OrdersIndex from './components/orders/OrdersIndex.vue';
+import OrdersCreate from './components/orders/OrdersCreate.vue';
+import OrdersEdit from './components/orders/OrdersEdit.vue';
+import ShowTemperature from './components/temperature/ShowTemperature.vue';
+
+const routes = [
+    {
+        path: '/',
+        components: {
+            ordersIndex: OrdersIndex
+        }
+    },
+    {path: '/orders/create', component: OrdersCreate, name: 'createOrder'},
+    {path: '/orders/edit/:id', component: OrdersEdit, name: 'editOrder'},
+    {path: '/temperature', component: ShowTemperature, name: 'createOrder'},
+]
+
+const router = new VueRouter({ routes })
+
+const app = new Vue({ router }).$mount('#app')
+

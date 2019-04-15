@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 
 
 Route::get('weather/{id}', 'Api\WeatherController@get_weather')->where('id', '[0-9]+');
+
+Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
+    Route::resource('orders', 'OrdersController', ['except' => ['create', 'edit']]);
+});
