@@ -24,12 +24,15 @@
                     <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/"><i class="fa fa-home"
                                                                                       aria-hidden="true"></i> Главная
                             <span class="sr-only">(current)</span></a></li>
-                    <li class="{{ Request::is('temperature') ? 'active' : '' }}"><a href="{{ url('#/temperature') }}"><i
-                                    class="fa fa-cloud" aria-hidden="true"></i> Погода</a></li>
+
                     <li class="{{ Request::is('order') ? 'active' : '' }}"><a href="{{ url('/') }}"><i
                                     class="fa fa-first-order" aria-hidden="true"></i> Заказы</a></li>
                     <li class="{{ Request::is('product') ? 'active' : '' }}"><a href="{{ url('product') }}"><i
                                     class="fa fa-product-hunt" aria-hidden="true"></i> Продукты</a></li>
+
+                    <li class="{{ Request::is('temperature') ? 'active' : '' }}"><a href="{{ url('#/temperature') }}"><i
+                                    class="fa fa-cloud" aria-hidden="true"></i> Погода</a></li>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->

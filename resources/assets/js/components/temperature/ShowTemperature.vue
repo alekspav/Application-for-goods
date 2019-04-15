@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default weather-panel">
-                    <div class="panel-heading"><span>Температура в Брянске</span><span class="pull-right">Яндекс.Погода</span></div>
+                    <div class="panel-heading"><span>Температура в Брянске</span><span
+                            class="pull-right">Яндекс.Погода</span></div>
 
                     <div class="panel-body">
 
@@ -57,10 +58,29 @@
         },
         methods: {
             /**
+             * Получить температуру
+             *
+             * @this  {VueComponent}
+             * @param {Object} day_part - Объект, представляющий часть дня
+             * @param {Object} to - Свойство объект
+             *
+             * @return {Object} Новый объект температуры.
+             */
+            getTemperature(day_part, to = 'temperature') {
+                if (to in day_part) {
+                    return day_part[to];
+                }
+                else {
+                    return day_part['temperature']
+                }
+            },
+
+            /**
              * Парсить XML
              *
              * @this  {VueComponent}
              * @param {string} xml - XML-строка.
+             *
              */
             doParseXML(xml) {
                 var parseString = require('xml2js').parseString;
@@ -78,38 +98,32 @@
                     //Объект температуры в настоящее время
                     let temp_obj;
 
-                    //В настоящее время
-                    if (daytime == "u") {
-                        temp_obj = day_part.temperature;
-                        self.currentTemp = temp_obj[0]['_'];
-
-                    }
-                    else {
-                        self.currentTemp = day_part.temperature_to[0]['_'];
-                    }
+                    //Температура в настоящее время
+                    self.currentTemp = self.getTemperature(day_part, 'temperature_to')[0]['_'];
 
                     //утром
-                    self.minUTemp = parsed_object.info.weather[0].day[0].day_part[4].temperature_to[0]['_'];
-                    self.maxUTemp = parsed_object.info.weather[0].day[0].day_part[0].temperature[0]['_'];
+                    self.minUTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[4], 'temperature_to')[0]['_'];
+                    self.maxUTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[0], 'temperature')[0]['_'];
 
                     //Днем
-                    self.minDTemp = parsed_object.info.weather[0].day[0].day_part[1].temperature_from[0]['_'];
-                    self.maxDTemp = parsed_object.info.weather[0].day[0].day_part[1].temperature_to[0]['_'];
+                    self.minDTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[1], 'temperature_from')[0]['_'];
+                    self.maxDTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[1], 'temperature_to')[0]['_'];
 
                     //Вечером
-                    self.minVTemp = parsed_object.info.weather[0].day[0].day_part[2].temperature_from[0]['_'];
-                    self.maxVTemp = parsed_object.info.weather[0].day[0].day_part[2].temperature_to[0]['_'];
+                    self.minVTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[2], 'temperature_from')[0]['_'];
+                    self.maxVTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[2], 'temperature_to')[0]['_'];
 
                     //Ночью
-                    self.minNTemp = parsed_object.info.weather[0].day[0].day_part[3].temperature_from[0]['_'];
-                    self.maxNTemp = parsed_object.info.weather[0].day[0].day_part[3].temperature_to[0]['_'];
+                    self.minNTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[3], 'temperature_from')[0]['_'];
+                    self.maxNTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[3], 'temperature_to')[0]['_'];
 
                     //Ночью утром
-                    self.minNUTemp = parsed_object.info.weather[0].day[0].day_part[4].temperature_from[0]['_'];
-                    self.maxNUTemp = parsed_object.info.weather[0].day[0].day_part[4].temperature_to[0]['_'];
+                    self.minNUTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[4], 'temperature_from')[0]['_'];
+                    self.maxNUTemp = self.getTemperature(parsed_object.info.weather[0].day[0].day_part[4], 'temperature_to')[0]['_'];
 
                 });
-            },
+            }
+            ,
 
             /**
              * Получить погоду
@@ -128,7 +142,8 @@
                         console.log(error);
                     });
 
-            },
+            }
+            ,
         },
         created() {
             this.getWeather();
