@@ -15,7 +15,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        return Order::all();
+        return Order::with('partner')->get();
     }
 
 

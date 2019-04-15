@@ -37,7 +37,7 @@ const routes = [
     },
     {path: '/orders/create', component: OrdersCreate, name: 'createOrder'},
     {path: '/orders/edit/:id', component: OrdersEdit, name: 'editOrder'},
-    {path: '/temperature', component: ShowTemperature, name: 'createOrder'},
+    {path: '/temperature', component: ShowTemperature, name: 'temperature'},
 ]
 
 

@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Партнер</label>
-                            <input type="text" v-model="order.partner_id" class="form-control">
+                            <input type="text" v-model="order.partner" class="form-control">
                         </div>
                     </div>
                     <div class="row">
@@ -62,7 +62,7 @@
                 order: {
                     status: '',
                     client_email: '',
-                    partner_id: '',
+                    partner: '',
                     delivery_dt: '',
                 }
             }

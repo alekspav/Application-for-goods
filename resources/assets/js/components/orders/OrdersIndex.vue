@@ -21,7 +21,7 @@
                     <tr v-for="order, index in orders">
                         <td>{{ order.status }}</td>
                         <td>{{ order.client_email }}</td>
-                        <td>{{ order.partner_id }}</td>
+                        <td>{{ order.partner.name }}</td>
                         <td>{{ order.delivery_dt }}</td>
                         <td>
                             <router-link :to="{name: 'editOrder', params: {id: order.id}}" class="btn btn-xs btn-default">
