@@ -44,6 +44,8 @@
 </template>
 
 <script>
+    import datetime from 'vuejs-datetimepicker';
+
     export default {
         data: function () {
             return {
@@ -69,6 +71,7 @@
                         alert("Невозможно создать заказ");
                     });
             }
-        }
+        },
+        components: {datetime}
     }
 </script>

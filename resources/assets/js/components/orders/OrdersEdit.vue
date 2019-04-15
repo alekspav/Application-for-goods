@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Доставлено</label>
-                            <input type="text" v-model="order.delivery_dt" class="form-control">
+                            <datetime format="YYYY-MM-DD h:i:s" width="300px" v-model="order.delivery_dt"></datetime>
                         </div>
                     </div>
                     <div class="row">
@@ -49,6 +49,8 @@
     </div>
 </template>
 <script>
+    import datetime from 'vuejs-datetimepicker';
+
     export default {
         mounted() {
             let app = this;
@@ -96,6 +98,7 @@
                         alert("Нельзя создать заказ");
                     });
             }
-        }
+        },
+        components: {datetime}
     }
 </script>

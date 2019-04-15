@@ -26,6 +26,7 @@
         "vue-localstorage": "^0.3.0",
         "vue-router": "^3.0.4",
         "vue-template-compiler": "^2.5.17",
+        "vuejs-datetimepicker": "^1.1.11",
         "weekstart": "^1.0.0",
         "xml2js": "^0.4.19"
     }

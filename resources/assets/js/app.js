@@ -26,8 +26,6 @@ import OrdersIndex from './components/orders/OrdersIndex.vue';
 import OrdersCreate from './components/orders/OrdersCreate.vue';
 import OrdersEdit from './components/orders/OrdersEdit.vue';
 
-
-
 const routes = [
     {
         path: '/',
