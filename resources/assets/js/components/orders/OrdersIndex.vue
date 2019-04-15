@@ -19,7 +19,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="order, index in orders">
-                        <td>{{ order.status }}</td>
+                        <td>{{ order.status_name }}</td>
                         <td>{{ order.client_email }}</td>
                         <td>{{ order.partner.name }}</td>
                         <td>{{ order.delivery_dt }}</td>

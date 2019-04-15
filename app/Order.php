@@ -10,11 +10,36 @@ class Order extends Model
         'status', 'client_email', 'partner_id', 'delivery_dt'
     ];
 
+    protected $appends = array('status_name');
 
+    /**
+     * Партнеры
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Ссылка на App\Partner
+     */
     public function partner()
     {
         return $this->belongsTo('App\Partner');
     }
+
+
+    /**
+     * @return string Получить имя статуса
+     */
+    public function getStatusNameAttribute(){
+        if($this->status == 0){
+            return "Новый";
+        }
+        else if($this->status == 10){
+            return "Подтвержден";
+        }
+        else if($this->status == 20){
+            return "Завершен";
+        }
+
+        return "Не определен";
+    }
+
+
 
     public function getDate()
     {

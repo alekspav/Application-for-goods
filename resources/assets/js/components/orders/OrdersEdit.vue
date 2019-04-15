@@ -5,13 +5,17 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Создаьт новый заказ</div>
+            <div class="panel-heading">Обновить заказ</div>
             <div class="panel-body">
                 <form v-on:submit="saveForm()">
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Статус</label>
-                            <input type="text" v-model="order.status" class="form-control">
+                            <select class="form-control" v-model="order.status">
+                                <option value="0">Новый</option>
+                                <option value="10">Подтвержден</option>
+                                <option value="20">Завершен</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -23,7 +27,9 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Партнер</label>
-                            <input type="text" v-model="order.partner" class="form-control">
+                            <select v-model="order.partner_id" class="form-control">
+                                <option v-for="partner in partners" v-bind:value="partner.id">{{partner.name}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -47,10 +53,18 @@
         mounted() {
             let app = this;
             let id = app.$route.params.id;
-            app.companyId = id;
+            app.orderId = id;
             axios.get('/api/orders/' + id)
                 .then(function (resp) {
-                    app.company = resp.data;
+                    app.order = resp.data;
+                })
+                .catch(function () {
+                    alert("Нельзя загрузить заказ")
+                });
+
+            axios.get('/api/partners')
+                .then(function (resp) {
+                    app.partners = resp.data;
                 })
                 .catch(function () {
                     alert("Нельзя загрузить заказ")
@@ -64,7 +78,8 @@
                     client_email: '',
                     partner: '',
                     delivery_dt: '',
-                }
+                },
+                partners: '' //Список партнеров
             }
         },
         methods: {
