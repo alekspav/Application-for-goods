@@ -37,12 +37,13 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="pagination">
+                    <button :disabled="! prevPage" @click.prevent="goToPrev">Предыдущий</button>
+                    {{ paginatonCount }}
+                    <button :disabled="! nextPage" @click.prevent="goToNext">Следующий</button>
+                </div>
             </div>
-            <div class="pagination">
-                <button :disabled="! prevPage" @click.prevent="goToPrev">Предыдущий</button>
-                {{ paginatonCount }}
-                <button :disabled="! nextPage" @click.prevent="goToNext">Следующий</button>
-            </div>
+
         </div>
     </div>
 </template>
@@ -109,6 +110,7 @@
 
                 return this.meta.current_page - 1;
             },
+            //Текст между кнопками
             paginatonCount() {
                 if (!this.meta) {
                     return;
@@ -116,7 +118,7 @@
 
                 const {current_page, last_page} = this.meta;
 
-                return `${current_page} of ${last_page}`;
+                return `${current_page} из ${last_page}`;
             },
         },
         beforeRouteEnter(to, from, next) {
@@ -154,12 +156,13 @@
             },
             goToPrev() {
                 this.$router.push({
-                    name: 'users.index',
+                    name: 'orders.index',
                     query: {
                         page: this.prevPage,
                     }
                 });
             },
+            //установка данных
             setData(err, {data: orders, links, meta}) {
                 if (err) {
                     this.error = err.toString();
