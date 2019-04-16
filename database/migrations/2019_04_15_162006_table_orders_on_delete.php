@@ -28,8 +28,6 @@ class TableOrdersOnDelete extends Migration
     {
         Schema::table('order_products', function (Blueprint $table) {
             $table->dropForeign(['order_id']);
-
-
             $table->foreign('order_id')->references('id')->on('orders');
         });
     }

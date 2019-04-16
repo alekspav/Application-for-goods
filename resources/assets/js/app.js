@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -26,6 +25,10 @@ import OrdersIndex from './components/orders/OrdersIndex.vue';
 import OrdersCreate from './components/orders/OrdersCreate.vue';
 import OrdersEdit from './components/orders/OrdersEdit.vue';
 
+import ProductsIndex from './components/orders/ProductsIndex.vue';
+import ProductsCreate from './components/orders/ProductsCreate.vue';
+import ProductsEdit from './components/orders/ProductsEdit.vue';
+
 const routes = [
     {
         path: '/',
@@ -36,10 +39,14 @@ const routes = [
     {path: '/orders/create', component: OrdersCreate, name: 'createOrder'},
     {path: '/orders/edit/:id', component: OrdersEdit, name: 'editOrder'},
     {path: '/temperature', component: ShowTemperature, name: 'temperature'},
+
+    {path: '/products', component: ProductsIndex, name: 'indexProduct'},
+    {path: '/products/create', component: ProductsCreate, name: 'createProduct'},
+    {path: '/products/edit/:id', component: ProductsEdit, name: 'editProduct'},
 ]
 
 
-const router = new VueRouter({ routes })
+const router = new VueRouter({routes})
 
-const app = new Vue({ router }).$mount('#app')
+const app = new Vue({router}).$mount('#app')
 

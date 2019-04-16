@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="form-group">
-            <router-link :to="{name: 'createOrder'}" class="btn btn-success">Создать новый заказ</router-link>
+            <router-link :to="{name: 'createProduct'}" class="btn btn-success">Создать новый продукт</router-link>
         </div>
 
         <div class="panel panel-default">
@@ -10,27 +10,27 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Статус</th>
-                        <th>Клиентская почта</th>
-                        <th>Партнер</th>
-                        <th>Доставлено</th>
+                        <th>Ид_продукта</th>
+                        <th>Наименование_продукта</th>
+                        <th>Наименование_поставщика</th>
+                        <th>Цена</th>
                         <th width="100">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="order, index in orders">
-                        <td>{{ order.status_name }}</td>
-                        <td>{{ order.client_email }}</td>
-                        <td>{{ order.partner.name }}</td>
-                        <td>{{ order.delivery_dt }}</td>
+                    <tr v-for="product, index in products">
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.vendor }}</td>
+                        <td>{{ product.price }}</td>
                         <td>
-                            <router-link :to="{name: 'editOrder', params: {id: order.id}}"
+                            <router-link :to="{name: 'editProduct', params: {id: product.id}}"
                                          class="btn btn-xs btn-default">
                                 Редактировать
                             </router-link>
                             <a href="#"
                                class="btn btn-xs btn-danger"
-                               v-on:click="deleteEntry(order.id, index)">
+                               v-on:click="deleteEntry(product.id, index)">
                                 Удалить
                             </a>
                         </td>
@@ -50,7 +50,7 @@
 
 <script>
     /**
-     * Получет заказы
+     * Получет продукты
      * @param integer page Страница
      * @param callback Функция для обработки полученных данных
      */
@@ -58,7 +58,7 @@
         const params = {page};
 
         axios
-            .get('/api/orders', {params})
+            .get('/api/products', {params})
             .then(response => {
                 callback(null, response.data);
             }).catch(error => {
@@ -67,13 +67,13 @@
     };
 
     /**
-     * Компонент Для показа заказов
+     * Компонент Для показа прожуктов
      * @type VueComponent
      */
     export default {
         data: function () {
             return {
-                orders: [],
+                products: [],
                 meta: null,
 
                 //Объект для pagination
@@ -139,13 +139,13 @@
         },
         methods: {
             deleteEntry(id, index) {
-                if (confirm("Вы хотите удалить заказ?")) {
-                    axios.delete('/api/orders/' + id)
+                if (confirm("Вы хотите удалить продукт?")) {
+                    axios.delete('/api/products/' + id)
                         .then((resp) => {
                             this.orders.splice(index, 1);
                         })
                         .catch(function (resp) {
-                            alert("Нельзя удалить заказ");
+                            alert("Нельзя удалить продукт");
                         });
                 }
             },
@@ -158,18 +158,18 @@
             },
             goToPrev() {
                 this.$router.push({
-                    name: 'orders.index',
+                    name: 'products.index',
                     query: {
                         page: this.prevPage,
                     }
                 });
             },
             //установка данных
-            setData(err, {data: orders, links, meta}) {
+            setData(err, {data: products, links, meta}) {
                 if (err) {
                     this.error = err.toString();
                 } else {
-                    this.orders = orders;
+                    this.products = products;
                     this.links = links;
                     this.meta = meta;
                 }
