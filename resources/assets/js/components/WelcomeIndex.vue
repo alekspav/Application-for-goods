@@ -2,7 +2,7 @@
     <div class="container">
         <h2>Техническое задание</h2>
         <p>
-            <a href="https://github.com/alekspav/HR-php-test"> Код проекта по адресу</a>
+            <a href="https://github.com/alekspav/HR-php-test"> <i class="fa fa-github " aria-hidden="true"></i> Source code</a>
         </p>
 
 
