@@ -10,21 +10,32 @@ use App\Product;
 class ProductsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Получить все продукты
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection Коллекция
      */
     public function index()
     {
         return ProductResource::collection(Product::with('vendor')->orderBy('name', 'asc')->paginate(25));
     }
 
+    /**
+     * Получить продукты по идентификатору заказа
+     *
+     * @param $order_id Идентификатор заказа
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection Коллекция
+     */
+    public function getProductsByOrder($order_id)
+    {
+        return ProductResource::collection(Product::with('vendor')->where(['order_id' => $order_id])->all());
+    }
+
 
     /**
-     * Store a newly created resource in storage.
+     * Создать продукт
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return mixed
      */
     public function store(Request $request)
     {

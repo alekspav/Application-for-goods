@@ -6,7 +6,7 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Список заказов</div>
+            <div class="panel-heading">Список продуктов</div>
             <div class="panel-body">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -55,7 +55,7 @@
      * @param integer page Страница
      * @param callback Функция для обработки полученных данных
      */
-    const getOrders = (page, callback) => {
+    const getProducts = (page, callback) => {
         const params = {page};
 
         axios
@@ -124,7 +124,7 @@
         //До подтверждения пути, соответствующему этому компоненту
         //this создасться не успел
         beforeRouteEnter(to, from, next) {
-            getOrders(to.query.page, (err, data) => {
+            getProducts(to.query.page, (err, data) => {
                 next(vm => vm.setData(err, data));
             });
         },
@@ -132,7 +132,7 @@
         //Этот компонент будет использоваться повторно
         beforeRouteUpdate(to, from, next) {
             this.users = this.links = this.meta = null;
-            getOrders(to.query.page, (err, data) => {
+            getProducts(to.query.page, (err, data) => {
                 this.setData(err, data);
                 next();
             });

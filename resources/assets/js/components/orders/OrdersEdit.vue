@@ -45,14 +45,33 @@
                         </div>
                     </div>
                 </form>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <b>Продукты:</b>
+                        <products :orderId="orderId"></products>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script>
     import datetime from 'vuejs-datetimepicker';
+    import products from './OrderProducts.vue';
 
     export default {
+        data: function () {
+            return {
+                orderId: null,
+                order: {
+                    status: '',
+                    client_email: '',
+                    partner: '',
+                    delivery_dt: '',
+                },
+                partners: '' //Список партнеров
+            }
+        },
         mounted() {
             let app = this;
             let id = app.$route.params.id;
@@ -76,18 +95,6 @@
                     alert("Нельзя загрузить партнеров")
                 });
         },
-        data: function () {
-            return {
-                orderId: null,
-                order: {
-                    status: '',
-                    client_email: '',
-                    partner: '',
-                    delivery_dt: '',
-                },
-                partners: '' //Список партнеров
-            }
-        },
         methods: {
             saveForm() {
                 event.preventDefault();
@@ -103,6 +110,10 @@
                     });
             }
         },
-        components: {datetime}
+        components:
+            {
+                datetime,
+                products
+            }
     }
 </script>

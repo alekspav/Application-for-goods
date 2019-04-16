@@ -21,14 +21,18 @@ import VueRouter from 'vue-router';
 window.Vue.use(VueRouter);
 
 import WelcomeIndex from './components/WelcomeIndex.vue';
+
 import ShowTemperature from './components/temperature/ShowTemperature.vue';
+
 import OrdersIndex from './components/orders/OrdersIndex.vue';
 import OrdersCreate from './components/orders/OrdersCreate.vue';
 import OrdersEdit from './components/orders/OrdersEdit.vue';
 
+
 import ProductsIndex from './components/products/ProductsIndex.vue';
 import ProductsCreate from './components/products/ProductsCreate.vue';
 import ProductsEdit from './components/products/ProductsEdit.vue';
+
 
 const routes = [
     {
