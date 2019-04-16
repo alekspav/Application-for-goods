@@ -16,7 +16,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        return OrderResource::collection(Order::with('partner')->paginate(10));
+        return OrderResource::collection(Order::with('partner')->paginate(25));
     }
 
 

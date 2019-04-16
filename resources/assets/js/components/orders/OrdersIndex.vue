@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h2>Заказы</h2>
         <div class="form-group">
             <router-link :to="{name: 'createOrder'}" class="btn btn-success">Создать новый заказ</router-link>
         </div>
@@ -157,7 +158,7 @@
             },
             goToPrev() {
                 this.$router.push({
-                    name: 'orders.index',
+                    name: 'indexProduct',
                     query: {
                         page: this.prevPage,
                     }

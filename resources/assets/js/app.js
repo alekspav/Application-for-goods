@@ -20,6 +20,7 @@ import VueRouter from 'vue-router';
 
 window.Vue.use(VueRouter);
 
+import WelcomeIndex from './components/WelcomeIndex.vue';
 import ShowTemperature from './components/temperature/ShowTemperature.vue';
 import OrdersIndex from './components/orders/OrdersIndex.vue';
 import OrdersCreate from './components/orders/OrdersCreate.vue';
@@ -33,9 +34,10 @@ const routes = [
     {
         path: '/',
         components: {
-            ordersIndex: OrdersIndex
+            ordersIndex: WelcomeIndex
         }
     },
+    {path: '/orders', component: OrdersIndex, name: 'indexOrder'},
     {path: '/orders/create', component: OrdersCreate, name: 'createOrder'},
     {path: '/orders/edit/:id', component: OrdersEdit, name: 'editOrder'},
     {path: '/temperature', component: ShowTemperature, name: 'temperature'},

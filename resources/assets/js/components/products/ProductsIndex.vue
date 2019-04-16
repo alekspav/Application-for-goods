@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h2>Продукты</h2>
         <div class="form-group">
             <router-link :to="{name: 'createProduct'}" class="btn btn-success">Создать новый продукт</router-link>
         </div>
