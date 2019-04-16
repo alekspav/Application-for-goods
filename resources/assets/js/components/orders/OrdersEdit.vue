@@ -102,7 +102,7 @@
                 var newOrder = app.order;
                 axios.patch('/api/orders/' + app.orderId, newOrder)
                     .then(function (resp) {
-                        app.$router.replace('/');
+                        app.$router.replace('/orders');
                     })
                     .catch(function (resp) {
                         console.log(resp);
