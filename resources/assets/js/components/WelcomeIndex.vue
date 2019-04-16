@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h2>Техническое задание</h2>
+        <h2>SPA-приложение на Laravel / Vue.js</h2>
         <p>
             <a href="https://github.com/alekspav/HR-php-test"> <i class="fa fa-github " aria-hidden="true"></i> Source code</a>
         </p>
