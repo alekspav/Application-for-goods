@@ -102,6 +102,17 @@
             });
         },
         methods: {
+            deleteEntry(id, index) {
+                if (confirm("Вы хотите удалить продукт?")) {
+                    axios.delete('/api/order_products/' + id)
+                        .then((resp) => {
+                            this.order_products.splice(index, 1);
+                        })
+                        .catch(function (resp) {
+                            alert("Нельзя удалить продукт");
+                        });
+                }
+            },
             //установка данных
             setData(err, {data: order_products}) {
                 if (err) {
@@ -138,7 +149,3 @@
 
     }
 </script>
-
-<style scoped>
-
-</style>
