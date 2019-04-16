@@ -20,6 +20,6 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::resource('partners', 'PartnersController', ['except' => ['create', 'edit']]);
     Route::resource('products', 'ProductsController', ['except' => ['create', 'edit']]);
     Route::resource('vendors', 'VendorsController', ['except' => ['create', 'edit']]);
-    Route::get('get_products_by_order/{orderId}', 'ProductsController@get_products_by_order')->where('orderId', '[0-9]+');
+    Route::get('get_products_by_order/{orderId}', 'ProductsController@getOrderProduct')->where('orderId', '[0-9]+');
 
 });

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\OrderProduct;
 
 class ProductsController extends Controller
 {
@@ -25,9 +25,9 @@ class ProductsController extends Controller
      * @param $order_id Идентификатор заказа
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection Коллекция
      */
-    public function getProductsByOrder($order_id)
+    public function getOrderProduct($order_id)
     {
-        return ProductResource::collection(Product::with('vendor')->where(['order_id' => $order_id])->all());
+        return ProductResource::collection(OrderProduct::with('product')->where(['order_id' => $order_id])->get());
     }
 
 

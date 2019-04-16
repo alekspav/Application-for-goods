@@ -41,13 +41,13 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <button class="btn btn-success">Обновить</button>
+                            <button class="btn btn-success">Обновить заказ</button>
                         </div>
                     </div>
                 </form>
                 <div class="row">
                     <div class="col-xs-12 form-group">
-                        <b>Продукты:</b>
+                        <hr>
                         <products :orderId="orderId"></products>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
     export default {
         data: function () {
             return {
-                orderId: null,
+                orderId: 5,
                 order: {
                     status: '',
                     client_email: '',
@@ -72,7 +72,7 @@
                 partners: '' //Список партнеров
             }
         },
-        mounted() {
+        created() {
             let app = this;
             let id = app.$route.params.id;
             app.orderId = id;
