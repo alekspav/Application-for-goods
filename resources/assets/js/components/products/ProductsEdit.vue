@@ -5,37 +5,27 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Обновить заказ</div>
+            <div class="panel-heading">Обновить продукт</div>
             <div class="panel-body">
                 <form v-on:submit="saveForm()">
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">Статус</label>
-                            <select class="form-control" v-model="order.status">
-                                <option value="0">Новый</option>
-                                <option value="10">Подтвержден</option>
-                                <option value="20">Завершен</option>
+                            <label class="control-label">Наименование</label>
+                            <input type="text" v-model="product.name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 form-group">
+                            <label class="control-label">Поставщик</label>
+                            <select v-model="product.vendor_id" class="form-control">
+                                <option v-for="vendor in vendors" v-bind:value="vendor.id">{{vendor.name}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">Почта клиента</label>
-                            <input type="text" v-model="order.client_email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <label class="control-label">Партнер</label>
-                            <select v-model="order.partner_id" class="form-control">
-                                <option v-for="partner in partners" v-bind:value="partner.id">{{partner.name}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <label class="control-label">Доставлено</label>
-                            <datetime format="YYYY-MM-DD h:i:s" width="300px" v-model="order.delivery_dt"></datetime>
+                            <label class="control-label">Цена</label>
+                            <input type="number" v-model="product.price" class="form-control">
                         </div>
                     </div>
                     <div class="row">
@@ -49,59 +39,56 @@
     </div>
 </template>
 <script>
-    import datetime from 'vuejs-datetimepicker';
-
     export default {
+        data: function () {
+            return {
+                product: {
+                    name: '',
+                    vendor_id: null,
+                    price: null,
+                },
+                vendors: '', //Список партнеров,
+                productId: null //Идентификатор продукта
+            }
+        },
         mounted() {
             let app = this;
             let id = app.$route.params.id;
-            app.orderId = id;
+            app.productId = id;
 
             //Получает заказ с иденьтификатором
-            axios.get('/api/orders/' + id)
+            axios.get('/api/products/' + id)
                 .then(function (resp) {
-                    app.order = resp.data;
+                    app.product = resp.data;
                 })
                 .catch(function () {
-                    alert("Нельзя загрузить заказ")
+                    alert("Нельзя загрузить продукт")
                 });
 
+
             //Получает партнеров
-            axios.get('/api/partners')
+            axios.get('/api/vendors')
                 .then(function (resp) {
-                    app.partners = resp.data;
+                    app.vendors = resp.data;
                 })
                 .catch(function () {
-                    alert("Нельзя загрузить партнеров")
+                    alert("Нельзя загрузить поставщиков")
                 });
-        },
-        data: function () {
-            return {
-                orderId: null,
-                order: {
-                    status: '',
-                    client_email: '',
-                    partner: '',
-                    delivery_dt: '',
-                },
-                partners: '' //Список партнеров
-            }
         },
         methods: {
             saveForm() {
                 event.preventDefault();
                 var app = this;
-                var newOrder = app.order;
-                axios.patch('/api/orders/' + app.orderId, newOrder)
+                var newProduct = app.product;
+                axios.patch('/api/products/' + app.productId, newProduct)
                     .then(function (resp) {
-                        app.$router.replace('/');
+                        app.$router.replace('/products');
                     })
                     .catch(function (resp) {
                         console.log(resp);
-                        alert("Нельзя создать заказ");
+                        alert("Нельзя создать продукт");
                     });
             }
-        },
-        components: {datetime}
+        }
     }
 </script>

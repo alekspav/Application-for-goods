@@ -27,7 +27,7 @@
 
                     <li class="{{ Request::is('order') ? 'active' : '' }}"><a href="{{ url('/') }}"><i
                                     class="fa fa-first-order" aria-hidden="true"></i> Заказы</a></li>
-                    <li class="{{ Request::is('product') ? 'active' : '' }}"><a href="{{ url('product') }}"><i
+                    <li class="{{ Request::is('product') ? 'active' : '' }}"><a href="{{ url('#/products') }}"><i
                                     class="fa fa-product-hunt" aria-hidden="true"></i> Продукты</a></li>
 
                     <li class="{{ Request::is('temperature') ? 'active' : '' }}"><a href="{{ url('#/temperature') }}"><i

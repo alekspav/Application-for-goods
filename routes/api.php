@@ -20,4 +20,6 @@ Route::get('weather/{id}', 'Api\WeatherController@get_weather')->where('id', '[0
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::resource('orders', 'OrdersController', ['except' => ['create', 'edit']]);
     Route::resource('partners', 'PartnersController', ['except' => ['create', 'edit']]);
+    Route::resource('products', 'ProductsController', ['except' => ['create', 'edit']]);
+    Route::resource('vendors', 'VendorsController', ['except' => ['create', 'edit']]);
 });

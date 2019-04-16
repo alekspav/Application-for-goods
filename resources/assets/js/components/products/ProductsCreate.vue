@@ -66,8 +66,8 @@
             saveForm() {
                 event.preventDefault();
                 var app = this;
-                var newVendor = app.vendor;
-                axios.post('/api/vendors', newOrder)
+                var newProduct = app.product;
+                axios.post('/api/products', newProduct)
                     .then(function (resp) {
                         app.$router.push({path: '/products'});
                     })

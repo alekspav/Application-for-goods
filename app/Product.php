@@ -17,6 +17,6 @@ class Product extends Model
      */
     public function vendor()
     {
-        return $this->belongsTo('App\Venor');
+        return $this->belongsTo('App\Vendor');
     }
 }

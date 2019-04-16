@@ -10,9 +10,9 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Ид_продукта</th>
-                        <th>Наименование_продукта</th>
-                        <th>Наименование_поставщика</th>
+                        <th>Ид</th>
+                        <th>Наименование</th>
+                        <th>Поставщик</th>
                         <th>Цена</th>
                         <th width="100">&nbsp;</th>
                     </tr>
@@ -21,7 +21,7 @@
                     <tr v-for="product, index in products">
                         <td>{{ product.id }}</td>
                         <td>{{ product.name }}</td>
-                        <td>{{ product.vendor }}</td>
+                        <td>{{ product.vendor.name }}</td>
                         <td>{{ product.price }}</td>
                         <td>
                             <router-link :to="{name: 'editProduct', params: {id: product.id}}"
@@ -103,7 +103,6 @@
              * @returns {integer}
              */
             prevPage() {
-                console.log('dd', this.meta);
                 if (!this.meta || this.meta.current_page === 1) {
                     return;
                 }
@@ -142,7 +141,7 @@
                 if (confirm("Вы хотите удалить продукт?")) {
                     axios.delete('/api/products/' + id)
                         .then((resp) => {
-                            this.orders.splice(index, 1);
+                            this.products.splice(index, 1);
                         })
                         .catch(function (resp) {
                             alert("Нельзя удалить продукт");
@@ -158,7 +157,7 @@
             },
             goToPrev() {
                 this.$router.push({
-                    name: 'products.index',
+                    name: 'indexProduct',
                     query: {
                         page: this.prevPage,
                     }

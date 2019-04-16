@@ -103,7 +103,6 @@
              * @returns {integer}
              */
             prevPage() {
-                console.log('dd', this.meta);
                 if (!this.meta || this.meta.current_page === 1) {
                     return;
                 }
