@@ -33,11 +33,6 @@ import ProductsIndex from './components/products/ProductsIndex.vue';
 import ProductsCreate from './components/products/ProductsCreate.vue';
 import ProductsEdit from './components/products/ProductsEdit.vue';
 
-//Модальные окна
-import vmodal from 'vue-js-modal'
-Vue.use(vmodal)
-
-
 
 const routes = [
     {

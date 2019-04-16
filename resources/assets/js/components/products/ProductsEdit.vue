@@ -56,7 +56,7 @@
             let id = app.$route.params.id;
             app.productId = id;
 
-            //Получает заказ с иденьтификатором
+            //Получает заказ с идентификатором
             axios.get('/api/products/' + id)
                 .then(function (resp) {
                     app.product = resp.data;
