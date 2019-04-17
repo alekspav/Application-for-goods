@@ -2,19 +2,19 @@
     <div>
         <h1>Заказы по категориям</h1>
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#panel1">Текущие</a></li>
-            <li><a data-toggle="tab" href="#panel2">Просроченные</a></li>
+            <li  class="active"><a data-toggle="tab" href="#panel2">Просроченные</a></li>
+            <li><a data-toggle="tab" href="#panel1">Текущие</a></li>
             <li><a data-toggle="tab" href="#panel3">Новые</a></li>
             <li><a data-toggle="tab" href="#panel4">Выполненные</a></li>
 
         </ul>
 
         <div class="tab-content">
-            <div id="panel1" class="tab-pane fade in active">
+            <div id="panel1" class="tab-pane fade">
                 <h3>Текущие</h3>
                 <scoped_orders :scopeType="1"></scoped_orders>
             </div>
-            <div id="panel2"  class="tab-pane fade">
+            <div id="panel2"  class="tab-pane fade  in active">
                 <h3>Просроченные</h3>
                 <scoped_orders :scopeType="0"></scoped_orders>
             </div>

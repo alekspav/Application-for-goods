@@ -44,10 +44,10 @@ const routes = [
         }
     },
 
-    {path: '/scoped_orders', component: OrderTabsIndex, name: 'indexScopedOrderd'},
+    {path: '/scoped_orders', component: OrderTabsIndex, name: 'indexScopedOrder'},
     {path: '/orders', component: OrdersIndex, name: 'indexOrder'},
-    {path: '/orders/create', component: OrdersCreate, name: 'createOrder'},
-    {path: '/orders/edit/:id', component: OrdersEdit, name: 'editOrder'},
+    {path: '/orders/create', component: OrdersCreate, name: 'createOrder', props: true},
+    {path: '/orders/edit/:id', component: OrdersEdit, name: 'editOrder', props: true},
 
     {path: '/temperature', component: ShowTemperature, name: 'temperature'},
 

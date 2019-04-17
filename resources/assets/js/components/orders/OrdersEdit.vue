@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="form-group">
-            <router-link :to="{ name: 'indexOrder'}" class="btn btn-default">Назад</router-link>
+            <router-link :to="{name: parentRoute}" class="btn btn-default">Назад</router-link>
         </div>
 
 
@@ -60,6 +60,7 @@
     import products from './OrderProducts.vue';
 
     export default {
+        props: ['parentRoute'], //Родительский маршрут для корректного обратного перехода
         data: function () {
             return {
                 orderId: 5,
@@ -73,6 +74,7 @@
             }
         },
         created() {
+            console.log(this.parentRoute)
             let app = this;
             let id = app.$route.params.id;
             app.orderId = id;
@@ -102,7 +104,7 @@
                 var newOrder = app.order;
                 axios.patch('/api/orders/' + app.orderId, newOrder)
                     .then(function (resp) {
-                        app.$router.replace('/orders');
+                        app.$router.push({name: app.parentRoute});
                     })
                     .catch(function (resp) {
                         console.log(resp);
