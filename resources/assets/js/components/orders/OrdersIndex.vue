@@ -2,7 +2,7 @@
     <div>
         <h2>Заказы</h2>
         <div class="form-group">
-            <router-link :to="{name: 'createOrder', parentRoute: 'indexOrder'}" class="btn btn-success">Создать новый заказ</router-link>
+            <router-link :to="{name: 'createOrder', params: {parentRoute: 'indexOrder'}}" class="btn btn-success">Создать новый заказ</router-link>
         </div>
 
         <div class="panel panel-default">

@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Статус</label>
-                            <select class="form-control" v-model="order.status">
+                            <select required class="form-control" v-model="order.status">
                                 <option value="0">Новый</option>
                                 <option value="10">Подтвержден</option>
                                 <option value="20">Завершен</option>
@@ -22,13 +22,13 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Почта клиента</label>
-                            <input type="text" v-model="order.client_email" class="form-control">
+                            <input required type="text" v-model="order.client_email" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Партнер</label>
-                            <select v-model="order.partner_id" class="form-control">
+                            <select required v-model="order.partner_id" class="form-control">
                                 <option v-for="partner in partners" v-bind:value="partner.id">{{partner.name}}</option>
                             </select>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Доставлено</label>
-                            <datetime format="YYYY-MM-DD h:i:s" width="300px" v-model="order.delivery_dt"></datetime>
+                            <datetime required format="YYYY-MM-DD h:i:s" width="300px" v-model="order.delivery_dt"></datetime>
                         </div>
                     </div>
                     <div class="row">

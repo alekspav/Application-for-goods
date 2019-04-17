@@ -11,13 +11,13 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Наименование</label>
-                            <input type="text" v-model="product.name" class="form-control">
+                            <input type="text" required v-model="product.name" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Поставщик</label>
-                            <select v-model="product.vendor_id" class="form-control">
+                            <select required v-model="product.vendor_id" class="form-control">
                                 <option v-for="vendor in vendors" v-bind:value="vendor.id">{{vendor.name}}</option>
                             </select>
                         </div>
@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Цена</label>
-                            <input type="number" v-model="product.price" class="form-control">
+                            <input required type="number" v-model="product.price" class="form-control">
                         </div>
                     </div>
                     <div class="row">
