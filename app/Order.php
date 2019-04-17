@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -40,29 +41,52 @@ class Order extends Model
     }
 
 
-
-    public function getDate()
+    /**
+     * 'Просроченная' область видимости
+     *
+     * @param $query Запрос
+     * @return mixed Модифицированный запрос
+     */
+    public function scopeBack($query)
     {
-        return $this->created_at;
+        return $query->where('delivery_dt', '<', date('Y-m-d').' 00:00:00')->where('status', 10)->take(50)->orderBy('delivery_dt', 'desc');
     }
 
-    public function getData()
+
+    /**
+     * 'Текущая' область видимости
+     *
+     * @param $query Запрос
+     * @return mixed Модифицированный запрос
+     */
+    public function scopeActual($query)
     {
-        $key = 'data';
-        if (!isset($this->dynamic[$key])) {
-            $this->dynamic[$key] = json_decode($this->data);
-        }
-        return (array)$this->dynamic[$key];
+        return $query->where('status', 10)->where('delivery_dt', '>',Carbon::parse('-24 hours'))->orderBy('delivery_dt', 'asc');
     }
 
-    public function getSum()
+    /**
+     * 'Новые' область видимости
+     *
+     * @param $query Запрос
+     * @return mixed Модифицированный запрос
+     */
+    public function scopeNew($query)
     {
-        $sum = 0;
-        $items = $this->getData();
-        foreach ($items as $item) {
-            $sum += ($item->cost * $item->count);
-        }
-        return round($sum, 2);
+        return $query->where('status', 0)->where('delivery_dt', '>', date('Y-m-d').' 00:00:00')->take(50)->orderBy('delivery_dt', 'asc');
     }
+
+
+    /**
+     * 'Success' область видимости
+     *
+     * @param $query Запрос
+     * @return mixed Модифицированный запрос
+     */
+    public function scopeSuccess($query)
+    {
+        return $query->where('status', 20)->where('delivery_dt', '>',Carbon::parse('-24 hours'))->take(50)->orderBy('delivery_dt', 'desc');
+    }
+
+
 
 }

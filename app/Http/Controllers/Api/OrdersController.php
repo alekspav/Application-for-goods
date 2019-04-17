@@ -24,8 +24,18 @@ class OrdersController extends Controller
      *
      * @param $scopeType Тип области
      */
-    public function getScopedOrders($scopeType){
-        return OrderResource::collection(Order::with('partner')->paginate(25));
+    public function getScopedOrders($scopeType)
+    {
+        if ($scopeType == 0) {
+            return OrderResource::collection(Order::with('partner')->back()->get());
+        } else if ($scopeType == 1) {
+            return OrderResource::collection(Order::with('partner')->actual()->get());
+        } else if ($scopeType == 2) {
+            return OrderResource::collection(Order::with('partner')->new()->get());
+        } else if ($scopeType == 3) {
+            return OrderResource::collection(Order::with('partner')->success()->get());
+        }
+
     }
 
 

@@ -37,13 +37,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <div class="pagination">
-                    <button :disabled="! prevPage" @click.prevent="goToPrev">Предыдущий</button>
-                    {{ paginatonCount }}
-                    <button :disabled="! nextPage" @click.prevent="goToNext">Следующий</button>
-                </div>
             </div>
-
         </div>
     </div>
 </template>
