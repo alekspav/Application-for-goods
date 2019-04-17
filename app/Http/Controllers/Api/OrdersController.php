@@ -19,6 +19,15 @@ class OrdersController extends Controller
         return OrderResource::collection(Order::with('partner')->paginate(25));
     }
 
+    /**
+     * Получить заказ по области видимости
+     *
+     * @param $scopeType Тип области
+     */
+    public function getScopedOrders($scopeType){
+        return OrderResource::collection(Order::with('partner')->paginate(25));
+    }
+
 
     /**
      * Store a newly created resource in storage.

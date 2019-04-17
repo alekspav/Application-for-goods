@@ -16,10 +16,14 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
     Route::get('weather/{id}', 'WeatherController@get_weather')->where('id', '[0-9]+');
+
     Route::resource('orders', 'OrdersController', ['except' => ['create', 'edit']]);
+    Route::get('scoped_orders/{scopeType}', 'OrdersController@getScopedOrders')->where('scopeType', '[0-9]+');
+
     Route::resource('partners', 'PartnersController', ['except' => ['create', 'edit']]);
     Route::resource('products', 'ProductsController', ['except' => ['create', 'edit']]);
     Route::resource('vendors', 'VendorsController', ['except' => ['create', 'edit']]);
+
     Route::resource('order_products', 'OrderProductsController', ['except' => ['create', 'edit', 'index']]);
     Route::get('get_products_by_order/{orderId}', 'OrderProductsController@getOrderProduct')->where('orderId', '[0-9]+');
 

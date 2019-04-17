@@ -24,6 +24,7 @@ import WelcomeIndex from './components/WelcomeIndex.vue';
 
 import ShowTemperature from './components/temperature/ShowTemperature.vue';
 
+
 import OrderTabsIndex from './components/orders/OrderTabsIndex.vue';
 import OrdersIndex from './components/orders/OrdersIndex.vue';
 import OrdersCreate from './components/orders/OrdersCreate.vue';
