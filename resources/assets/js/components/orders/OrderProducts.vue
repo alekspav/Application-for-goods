@@ -10,7 +10,7 @@
                 </select>
                 <a href="#"
                    class="btn btn-xs"
-                   v-on:click="selectProduct()">
+                   v-on:click="addProduct()">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i> Добавить продукт
                 </a>
             </div>
@@ -64,7 +64,7 @@
 <script>
 
     /**
-     * Получет продукты для заданного заказа orderId
+     * Получает продукты для заданного заказа orderId
      * @param integer orderId Идентификатор заказа
      * @param callback Функция для обработки полученных данных
      */
@@ -150,13 +150,36 @@
              * @constructor
              */
             quantityChange(id, quantity) {
-                console.log(id, quantity)
+                var product = {'id': id, 'quantity': quantity};
+                axios.patch('/api/order_products/' + id, product)
+                    .then(function (resp) {
+                    })
+                    .catch(function (resp) {
+                        console.log(resp);
+                        alert("Нельзя обновить продукт заявки");
+                    });
+
+
             },
             /**
              * Выбран новый товар
              */
-            selectProduct() {
+            addProduct() {
                 console.log(this.selected_product);
+                var product = {'order_id': this.orderId, 'product_id': this.selected_product, 'quantity': 1};
+                let app = this;
+
+                axios.post('/api/order_products', product)
+                    .then(function (resp) {
+                        getProducts(app.orderId, (err, data) => {
+                            app.setData(err, data);
+                        });
+                    })
+                    .catch(function (resp) {
+                        console.log(resp);
+                        alert("Нельзя добавить продукт заявки");
+                    });
+
 
             }
 

@@ -86,7 +86,7 @@
                     })
                     .catch(function (resp) {
                         console.log(resp);
-                        alert("Нельзя создать продукт");
+                        alert("Нельзя обновить продукт");
                     });
             }
         }
