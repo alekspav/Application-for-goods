@@ -165,7 +165,6 @@
              * Выбран новый товар
              */
             addProduct() {
-                console.log(this.selected_product);
                 var product = {'order_id': this.orderId, 'product_id': this.selected_product, 'quantity': 1};
                 let app = this;
 

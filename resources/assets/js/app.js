@@ -24,6 +24,7 @@ import WelcomeIndex from './components/WelcomeIndex.vue';
 
 import ShowTemperature from './components/temperature/ShowTemperature.vue';
 
+import OrderTabsIndex from './components/orders/OrderTabsIndex.vue';
 import OrdersIndex from './components/orders/OrdersIndex.vue';
 import OrdersCreate from './components/orders/OrdersCreate.vue';
 import OrdersEdit from './components/orders/OrdersEdit.vue';
@@ -33,7 +34,7 @@ import ProductsIndex from './components/products/ProductsIndex.vue';
 import ProductsCreate from './components/products/ProductsCreate.vue';
 import ProductsEdit from './components/products/ProductsEdit.vue';
 
-
+//Маршруты
 const routes = [
     {
         path: '/',
@@ -41,9 +42,12 @@ const routes = [
             ordersIndex: WelcomeIndex
         }
     },
+
+    {path: '/scoped_orders', component: OrderTabsIndex, name: 'indexScopedOrderd'},
     {path: '/orders', component: OrdersIndex, name: 'indexOrder'},
     {path: '/orders/create', component: OrdersCreate, name: 'createOrder'},
     {path: '/orders/edit/:id', component: OrdersEdit, name: 'editOrder'},
+
     {path: '/temperature', component: ShowTemperature, name: 'temperature'},
 
     {path: '/products', component: ProductsIndex, name: 'indexProduct'},

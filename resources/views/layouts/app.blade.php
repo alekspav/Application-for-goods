@@ -25,8 +25,23 @@
                                                                                       aria-hidden="true"></i> Главная
                             <span class="sr-only">(current)</span></a></li>
 
-                    <li class="{{ Request::is('order') ? 'active' : '' }}"><a href="{{ url('#/orders') }}"><i
-                                    class="fa fa-first-order" aria-hidden="true"></i> Заказы</a></li>
+                    <li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i
+                                    class="fa fa-first-order" aria-hidden="true"></i> Заказы
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                             <li ><a   href="{{ url('#/orders') }}"><i class="fa fa-list" aria-hidden="true"></i> Все заказы</a></li>
+
+                            <li><a   href="{{ url('#/scoped_orders') }}"><i class="fa fa-bars" aria-hidden="true"></i> Заказы по категориям</a></li>
+
+                        </ul>
+                    </li>
+                    </li>
+
+
                     <li class="{{ Request::is('product') ? 'active' : '' }}"><a href="{{ url('#/products') }}"><i
                                     class="fa fa-product-hunt" aria-hidden="true"></i> Продукты</a></li>
 
@@ -41,24 +56,29 @@
                                 Регистрация</a></li>
                         <li><a href="{{ url('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Вход</a></li>
                     @else
-
-                        <li>
-                            <a href="#" role="button"><i class="fa fa-user-circle-o"
-                                                         aria-hidden="true"></i> {{ Auth::user()->name }} </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('logout') }}" class="white-text"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i> Выход
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <i class="fa fa-user-circle-o"
+                                   aria-hidden="true"></i> {{ Auth::user()->name }}
+                                <b class="caret"></b>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('logout') }}" class="white-text"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i> Выход
+                                    </a>
 
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                  style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
 
+                            </ul>
                         </li>
+
+
                     @endif
                 </ul>
             </div>
