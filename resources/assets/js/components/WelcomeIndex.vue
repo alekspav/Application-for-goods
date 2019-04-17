@@ -2,10 +2,14 @@
     <div class="container">
         <h2>SPA-приложение на Laravel / Vue.js</h2>
         <p>
-            <a href="https://github.com/alekspav/HR-php-test"> <i class="fa fa-github " aria-hidden="true"></i> Source code</a>
+            <a href="https://github.com/alekspav/HR-php-test"> <i class="fa fa-github " aria-hidden="true"></i> Source
+                code</a>
         </p>
-
-
+        <p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/H26oS1diSDA" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </p>
         <ul>
             <li>
                 <p>Создать страницу на которой выводится текущая температура в Брянске (запрос из php) (Работа с api
