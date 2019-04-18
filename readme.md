@@ -9,6 +9,7 @@
 - Справочник товаров
 - Добавление и редактирование заявок на товары. Расширенный режим редактирования количества товаров
 
+[![Видео](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=5TZ-zzYagJ8&feature=youtu.be)
 
 ## Инсталляция
 - `composer install`
