@@ -1,8 +1,9 @@
 <template>
     <div class="container">
-        <h2>SPA-приложение на Laravel / Vue.js</h2>
+        <h2>Оформление заявок на поставку товаров. SPA-приложение на Laravel / Vue.js / API</h2>
         <p>
-            <a href="https://github.com/alekspav/HR-php-test"> <i class="fa fa-github " aria-hidden="true"></i> Source
+            <a href="https://github.com/alekspav/Application-for-goods"> <i class="fa fa-github "
+                                                                            aria-hidden="true"></i> Source
                 code</a>
         </p>
         <p>
@@ -10,6 +11,18 @@
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
         </p>
+        <p>
+            <b>В состав входят:</b>
+        <ul>
+            <li>Погода в Брянске</li>
+            <li>Справочник заявок. Постраничный просмотр</li>
+            <li>Справочник заявок. Группировка по статусам</li>
+            <li>Справочник товаров</li>
+            <li>Добавление и редактирование заявок на товары. Расширенный режим редактирования количества товаров</li>
+        </ul>
+        </p>
+
+        <h3>Техническое задание</h3>
         <ul>
             <li>
                 <p>Создать страницу на которой выводится текущая температура в Брянске (запрос из php) (Работа с api
@@ -99,17 +112,6 @@
                                     <li>ограничение 50</li>
                                 </ul>
                             </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>Дополнительный функционал для страницы редактирования заказа
-                <ul>
-                    <li>при установке статуса заказа "завершен" требуется отправить email - партнеру и всем поставщикам
-                        продуктов из заказа
-                        <ul>
-                            <li>заказ №(номер) завершен</li>
-                            <li>текст состав заказа (список), стоимость заказа (значение)</li>
                         </ul>
                     </li>
                 </ul>
