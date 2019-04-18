@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Статус</label>
-                            <select  required class="form-control" v-model="order.status">
+                            <select required class="form-control" v-model="order.status">
                                 <option value="0">Новый</option>
                                 <option value="10">Подтвержден</option>
                                 <option value="20">Завершен</option>
@@ -35,7 +35,8 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Доставлено</label>
-                            <datetime required format="YYYY-MM-DD h:i:s" width="300px" v-model="order.delivery_dt"></datetime>
+                            <datetime required format="YYYY-MM-DD h:i:s" width="300px"
+                                      v-model="order.delivery_dt"></datetime>
                         </div>
                     </div>
                     <div class="row">

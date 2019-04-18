@@ -25,15 +25,15 @@ import WelcomeIndex from './components/WelcomeIndex.vue';
 import ShowTemperature from './components/temperature/ShowTemperature.vue';
 
 
-import OrderTabsIndex from './components/orders/OrderTabsIndex.vue';
-import OrdersIndex from './components/orders/OrdersIndex.vue';
-import OrdersCreate from './components/orders/OrdersCreate.vue';
-import OrdersEdit from './components/orders/OrdersEdit.vue';
+import OrderTabsIndex from './components/orders/tabs/OrderTabsIndex.vue';
+import OrdersIndex from './components/orders/pages/OrdersIndex.vue';
+import OrdersCreate from './components/orders/forms/OrdersCreate.vue';
+import OrdersEdit from './components/orders/forms/OrdersEdit.vue';
 
 
-import ProductsIndex from './components/products/ProductsIndex.vue';
-import ProductsCreate from './components/products/ProductsCreate.vue';
-import ProductsEdit from './components/products/ProductsEdit.vue';
+import ProductsIndex from './components/products/pages/ProductsIndex.vue';
+import ProductsCreate from './components/products/forms/ProductsCreate.vue';
+import ProductsEdit from './components/products/forms/ProductsEdit.vue';
 
 //Маршруты
 const routes = [

@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="form-group">
-            <router-link :to="{name: 'createOrder', params:{parentRoute: 'indexScopedOrder'}}" class="btn btn-success">Создать новый заказ</router-link>
+            <router-link :to="{name: 'createOrder', params:{parentRoute: 'indexScopedOrder'}}" class="btn btn-success">
+                Создать новый заказ
+            </router-link>
         </div>
 
         <div class="panel panel-default">
@@ -24,8 +26,9 @@
                         <td>{{ order.partner.name }}</td>
                         <td>{{ order.delivery_dt }}</td>
                         <td>
-                            <router-link :to="{name: 'editOrder', params: {id: order.id, parentRoute: 'indexScopedOrder'}}"
-                                         class="btn btn-xs btn-default">
+                            <router-link
+                                    :to="{name: 'editOrder', params: {id: order.id, parentRoute: 'indexScopedOrder'}}"
+                                    class="btn btn-xs btn-default">
                                 Редактировать
                             </router-link>
                             <a href="#"

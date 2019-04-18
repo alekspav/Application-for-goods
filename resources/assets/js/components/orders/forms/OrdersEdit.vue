@@ -36,7 +36,8 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Доставлено</label>
-                            <datetime required format="YYYY-MM-DD h:i:s" width="300px" v-model="order.delivery_dt"></datetime>
+                            <datetime required format="YYYY-MM-DD h:i:s" width="300px"
+                                      v-model="order.delivery_dt"></datetime>
                         </div>
                     </div>
                     <div class="row">

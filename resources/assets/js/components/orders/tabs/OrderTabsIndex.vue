@@ -2,7 +2,7 @@
     <div>
         <h1>Заказы по категориям</h1>
         <ul class="nav nav-tabs">
-            <li  class="active"><a data-toggle="tab" href="#panel2">Просроченные</a></li>
+            <li class="active"><a data-toggle="tab" href="#panel2">Просроченные</a></li>
             <li><a data-toggle="tab" href="#panel1">Текущие</a></li>
             <li><a data-toggle="tab" href="#panel3">Новые</a></li>
             <li><a data-toggle="tab" href="#panel4">Выполненные</a></li>
@@ -14,7 +14,7 @@
                 <h3>Текущие</h3>
                 <scoped_orders :scopeType="1"></scoped_orders>
             </div>
-            <div id="panel2"  class="tab-pane fade  in active">
+            <div id="panel2" class="tab-pane fade  in active">
                 <h3>Просроченные</h3>
                 <scoped_orders :scopeType="0"></scoped_orders>
             </div>
@@ -35,7 +35,7 @@
 
     export default {
         name: "OrderTabsIndex",
-        components:{
+        components: {
             scoped_orders
         }
     }
