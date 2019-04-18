@@ -14,7 +14,3 @@
 Route::get('/', 'HomeController@index');
 Auth::routes();
 
-//Route::get('temperature', 'ShowTemperature');
-
-
-//Route::get('/home', 'HomeController@index')->name('home');
