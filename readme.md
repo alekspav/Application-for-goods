@@ -10,7 +10,7 @@
 - Добавление и редактирование заявок на товары. Расширенный режим редактирования количества товаров
 
 # Видео
-[![Видео](https://i.ytimg.com/vi/5TZ-zzYagJ8/hqdefault.jpg)](https://www.youtube.com/watch?v=5TZ-zzYagJ8&feature=youtu.be)
+[![Видео](https://i.ytimg.com/vi/5TZ-zzYagJ8/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAhyLeEdHZ7n1PI1D3a8VnZih8t_g)](https://www.youtube.com/watch?v=5TZ-zzYagJ8&feature=youtu.be)
 
 ## Инсталляция
 - `composer install`
